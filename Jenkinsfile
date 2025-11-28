@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USER = 'YOUR_DOCKERHUB_USERNAME'
+        DOCKERHUB_USER = 'himanshudev19'
         BACKEND_IMAGE = "${DOCKERHUB_USER}/mean-backend"
         FRONTEND_IMAGE = "${DOCKERHUB_USER}/mean-frontend"
         VM_USER = 'ubuntu'
