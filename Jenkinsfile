@@ -6,7 +6,7 @@ pipeline {
         BACKEND_IMAGE = "${DOCKERHUB_USER}/mean-backend"
         FRONTEND_IMAGE = "${DOCKERHUB_USER}/mean-frontend"
         VM_USER = 'ubuntu'
-        VM_HOST = 'YOUR_EC2_PUBLIC_IP'
+        VM_HOST = '98.94.2.216'
         DEPLOY_PATH = '/home/ubuntu/mean-app'
     }
 
