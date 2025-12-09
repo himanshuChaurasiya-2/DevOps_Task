@@ -66,7 +66,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${VM_USER}@${VM_HOST} 'mkdir -p ${DEPLOY_PATH}'
 
                     rsync -av -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" docker-compose.yml ${VM_USER}@${VM_HOST}:${DEPLOY_PATH}/
-                    rsync -av -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" nginx/ ${VM_USER}@${VM_HOST}:${DEPLOY_PATH}/nginx/
+                    rsync -av -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" nginax/ ${VM_USER}@${VM_HOST}:${DEPLOY_PATH}/nginax/
 
                     ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${VM_USER}@${VM_HOST} "
                         cd ${DEPLOY_PATH} &&
