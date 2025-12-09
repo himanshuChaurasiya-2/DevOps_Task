@@ -11,7 +11,7 @@ services:
       - mongo-data:/data/db
 
   backend:
-    image: YOUR_DOCKERHUB_USERNAME/mean-backend:latest
+    image: himanshudev19/mean-backend:latest
     container_name: mean-backend
     restart: always
     environment:
@@ -21,7 +21,7 @@ services:
       - mongo
 
   frontend:
-    image: YOUR_DOCKERHUB_USERNAME/mean-frontend:latest
+    image: himanshudev19/mean-frontend:latest
     container_name: mean-frontend
     restart: always
     depends_on:
