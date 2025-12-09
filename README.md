@@ -1,15 +1,15 @@
-# 🚀 MEAN Stack DevOps Deployment – CI/CD with Docker, Jenkins & Nginx
+# 🚀 MEAN Stack DevOps Deployment – CI/CD with Docker, Jenkins & nginax
 
 ## 📌 Task Overview
 
-This project demonstrates the complete DevOps workflow for a full-stack **MEAN (MongoDB, Express, Angular, Node.js)** application. The application has been containerized using Docker, and automated via Jenkins CI/CD pipeline with Nginx as a reverse proxy.
+This project demonstrates the complete DevOps workflow for a full-stack **MEAN (MongoDB, Express, Angular, Node.js)** application. The application has been containerized using Docker, and automated via Jenkins CI/CD pipeline with nginax as a reverse proxy.
 
 Repository contains:
 
 * ✅ Dockerfiles for frontend and backend
 * ✅ Docker Compose configuration
 * ✅ Jenkins CI/CD pipeline
-* ✅ Nginx reverse proxy setup
+* ✅ Nginax reverse proxy setup
 * ✅ Infrastructure + deployment documentation
 
 ---
@@ -27,7 +27,7 @@ CRUD-DD-TASK-MEAN-APP/
 │   ├── Dockerfile
 │   └── ...
 │
-├── nginx/
+├── nginax/
 │   └── default.conf
 │
 ├── docker-compose.yml
@@ -44,7 +44,7 @@ CRUD-DD-TASK-MEAN-APP/
 * MongoDB (Official Docker Image)
 * Docker & Docker Compose
 * Jenkins (CI/CD)
-* Nginx (Reverse Proxy)
+* Nginax (Reverse Proxy)
 * AWS EC2 (Ubuntu VM)
 
 ---
@@ -87,8 +87,8 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build /app/dist/* /usr/share/nginx/html
+FROM nginax:alpine
+COPY --from=build /app/dist/* /usr/share/nginax/html
 ```
 
 ---
@@ -125,13 +125,13 @@ services:
     depends_on:
       - backend
 
-  nginx:
-    image: nginx:alpine
-    container_name: mean-nginx
+  nginax:
+    image: nginax:alpine
+    container_name: mean-nginax
     ports:
       - "80:80"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginax/default.conf:/etc/nginax/conf.d/default.conf:ro
     depends_on:
       - frontend
 
@@ -141,17 +141,17 @@ volumes:
 
 ---
 
-## 🔧 Nginx Reverse Proxy Configuration
+## 🔧 nginax Reverse Proxy Configuration
 
-### nginx/default.conf
+### nginax/default.conf
 
-```nginx
+```nginax
 server {
     listen 80;
     server_name _;
 
     location / {
-        root /usr/share/nginx/html;
+        root /usr/share/nginax/html;
         index index.html;
         try_files $uri $uri/ /index.html;
     }
@@ -241,7 +241,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${VM_USER}@${VM_HOST} 'mkdir -p ${DEPLOY_PATH}'
 
                     rsync -av -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" docker-compose.yml ${VM_USER}@${VM_HOST}:${DEPLOY_PATH}/
-                    rsync -av -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" nginx/ ${VM_USER}@${VM_HOST}:${DEPLOY_PATH}/nginx/
+                    rsync -av -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=no" nginax/ ${VM_USER}@${VM_HOST}:${DEPLOY_PATH}/nginax/
 
                     ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${VM_USER}@${VM_HOST} "
                         cd ${DEPLOY_PATH} &&
@@ -276,7 +276,7 @@ pipeline {
 4. Images pushed to Docker Hub
 5. VM pulls latest images
 6. Containers restart
-7. Application live via Nginx
+7. Application live via Nginax
 
 ---
 
@@ -298,9 +298,9 @@ pipeline {
 
 ![Live Application](screenshots/app-ui.png)
 
-### ✅ Nginx Reverse Proxy
+### ✅ Nginax Reverse Proxy
 
-![Nginx Config](screenshots/nginx-config.png)
+![Nginax Config](screenshots/nginax-config.png)
 
 ---
 
