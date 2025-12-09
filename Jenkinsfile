@@ -5,9 +5,9 @@ pipeline {
         DOCKERHUB_USER = 'himanshudev19'
         BACKEND_IMAGE = "${DOCKERHUB_USER}/mean-backend"
         FRONTEND_IMAGE = "${DOCKERHUB_USER}/mean-frontend"
-        VM_USER = 'ubuntu'
-        VM_HOST = 'YOUR_EC2_PUBLIC_IP'
-        DEPLOY_PATH = '/home/ubuntu/mean-app'
+        VM_USER = 'ec2-user'
+        VM_HOST = '98.93.45.114'
+        DEPLOY_PATH = '/home/ec2-user/mean-app'
     }
 
     stages {
@@ -70,9 +70,9 @@ pipeline {
 
                     ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${VM_USER}@${VM_HOST} "
                         cd ${DEPLOY_PATH} &&
-                        docker-compose pull &&
-                        docker-compose down &&
-                        docker-compose up -d --remove-orphans
+                        docker compose pull &&
+                        docker compose down &&
+                        docker compose up -d --remove-orphans
                     "
                     """
                 }
