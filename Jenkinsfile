@@ -5,9 +5,9 @@ pipeline {
         DOCKERHUB_USER = 'himanshudev19'
         BACKEND_IMAGE = "${DOCKERHUB_USER}/mean-backend"
         FRONTEND_IMAGE = "${DOCKERHUB_USER}/mean-frontend"
-        VM_USER = 'ubuntu'
+        VM_USER = 'ec2-user'
         VM_HOST = '98.93.45.114'
-        DEPLOY_PATH = '/home/ubuntu/mean-app'
+        DEPLOY_PATH = '/home/ec2-user/mean-app'
     }
 
     stages {
