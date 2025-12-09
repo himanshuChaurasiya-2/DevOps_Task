@@ -70,9 +70,9 @@ pipeline {
 
                     ssh -o StrictHostKeyChecking=no -i $SSH_KEY ${VM_USER}@${VM_HOST} "
                         cd ${DEPLOY_PATH} &&
-                        docker-compose pull &&
-                        docker-compose down &&
-                        docker-compose up -d --remove-orphans
+                        docker compose pull &&
+                        docker compose down &&
+                        docker compose up -d --remove-orphans
                     "
                     """
                 }
